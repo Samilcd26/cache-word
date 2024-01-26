@@ -2,6 +2,7 @@ import 'package:cache_word/Business/00.Core/IWorkshopService.dart';
 import 'package:cache_word/Business/00.Core/Impl/WorkshopService.dart';
 import 'package:cache_word/Business/Data/card_model.dart';
 import 'package:cache_word/Business/Data/workshop_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // ignore: depend_on_referenced_packages
 
@@ -9,21 +10,28 @@ class MainController extends GetxController {
   final IWorkshopService _service = WorkshopService();
 
   Stream<WorkshopModel> get getStreamData => _service.streamResponse;
-
-  List<WorkshopModel> workshopList = [];
+  final ValueNotifier<List<WorkshopModel>> allWorkshopNotifier = ValueNotifier([]);
   Future<void> initialize() async {
-    workshopList = await _service.getWorkshopData();
+    allWorkshopNotifier.value = await _service.getWorkshopData();
   }
 
-  Future<void> addOrUpdateWorkshopData(String id, String? title, WorkshopModel? workshopModel) =>
-      _service.addOrUpdateWorkshopData(id, title, workshopModel);
+  Future<void> addNewWorkshopData(WorkshopModel workshopModel) => _service.addNewWorkshopData(workshopModel);
 
-  Future<void> deleteWorkshopData(String id) => _service.deleteWorkshopData(id);
+  Future<void> renameWorkshop(String newTitle, WorkshopModel workshopModel) async {
+    await _service.renameWorkshop(newTitle, workshopModel);
+    initialize();
+  }
+
+  Future<void> deleteWorkshopData(String id) async {
+    _service.deleteWorkshopData(id);
+    initialize();
+  }
+
   Future<void> deleteAllWorkshop() => _service.deleteAllWorkshop();
-  Future<void> addNewCard(String workshopId, CardModel cardModel) => _service.addNewCard(workshopId, cardModel);
+  Future<void> addNewCard(WorkshopModel workshopModel, CardModel cardModel) => _service.addNewCard(workshopModel, cardModel);
   Future<void> removeCard(
-    String workshopId,
+    WorkshopModel workshopModel,
     String cardId,
   ) =>
-      _service.removeCard(workshopId, cardId);
+      _service.removeCard(workshopModel, cardId);
 }

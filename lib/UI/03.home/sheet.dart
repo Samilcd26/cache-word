@@ -1,13 +1,22 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:cache_word/Business/Data/workshop_model.dart';
-import 'package:cache_word/UI/01.home/sheet.mixin.dart';
+import 'package:cache_word/UI/03.home/sheet.mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeSheet extends StatelessWidget with SheetMixin {
-  HomeSheet({super.key, required this.workshop});
+class HomePageBottomSheet extends StatelessWidget with HomePageBottomSheetMixin {
+  HomePageBottomSheet({super.key, required this.workshop});
   WorkshopModel workshop;
+
+  static Future<void> showSheet(BuildContext context, WorkshopModel workshop) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return HomePageBottomSheet(workshop: workshop);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +27,11 @@ class HomeSheet extends StatelessWidget with SheetMixin {
           const DividerPull(),
           _CustomTextIconButton(Icons.card_giftcard_outlined, "Open the deck", () => openWorkshop(workshop)),
           const SizedBox(height: 20),
-          _CustomTextIconButton(Icons.card_giftcard_outlined, "Testing", () {}),
+          _CustomTextIconButton(Icons.card_giftcard_outlined, "Testing", () => openTestWorkshop(workshop)),
           const SizedBox(height: 20),
-          _CustomTextIconButton(Icons.card_giftcard_outlined, "Rename", () {}),
+          _CustomTextIconButton(Icons.card_giftcard_outlined, "Rename", () => renameWorkshopGroup(context, workshop)),
           const SizedBox(height: 20),
-          _CustomTextIconButton(Icons.card_giftcard_outlined, "Delete", () => deleteWorkshop(workshop.id)),
+          _CustomTextIconButton(Icons.card_giftcard_outlined, "Delete", () => deleteWorkshop(context, workshop.id)),
         ],
       ),
     );

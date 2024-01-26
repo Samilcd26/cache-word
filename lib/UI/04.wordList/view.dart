@@ -1,5 +1,5 @@
 import 'package:cache_word/Business/Data/workshop_model.dart';
-import 'package:cache_word/UI/02.wordList/view.model.dart';
+import 'package:cache_word/UI/04.wordList/view.model.dart';
 import 'package:flutter/material.dart';
 
 class WordListPage extends StatelessWidget with WordListPageMixin {
@@ -10,7 +10,7 @@ class WordListPage extends StatelessWidget with WordListPageMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => addNewCard(context),
       ),
       body: ListView.builder(
         itemCount: workshopModel.cardList.length,

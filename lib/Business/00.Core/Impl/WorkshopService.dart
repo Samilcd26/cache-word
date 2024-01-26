@@ -10,27 +10,18 @@ class WorkshopService extends IWorkshopService {
   var uuid = const Uuid();
   MyStream<WorkshopModel> workshopStream = MyStream<WorkshopModel>();
   Stream<WorkshopModel> get streamResponse => workshopStream.getResponse;
+
   @override
-  Future<void> addNewCard(String workshopId, CardModel cardModel) {
-    // TODO: implement addNewCard
-    throw UnimplementedError();
+  Future<void> addNewWorkshopData(WorkshopModel workshopModel) async {
+    workshopModel.id = uuid.v1();
+    await _operation.addOrUpdateItem(workshopModel.id, workshopModel);
+    workshopStream.add(workshopModel);
   }
 
   @override
-  Future<void> addOrUpdateWorkshopData(String id, String? title, WorkshopModel? workshopModel) async {
-    //?Create new group
-    if (workshopModel == null) {
-      var newGroup = WorkshopModel(id: uuid.v1(), title: title!, cardList: []);
-      await _operation.addOrUpdateItem(newGroup.id, newGroup);
-      workshopStream.add(newGroup);
-    } else if (title != null) {
-      var tempt = _operation.getItem(id);
-      tempt!.title = title;
-      await _operation.addOrUpdateItem(tempt.id, tempt);
-    } else {
-      await _operation.addOrUpdateItem(id, workshopModel!);
-      workshopStream.add(workshopModel);
-    }
+  Future<void> renameWorkshop(String title, WorkshopModel workshopModel) async {
+    workshopModel.title = title;
+    await _operation.addOrUpdateItem(workshopModel.id, workshopModel);
   }
 
   @override
@@ -46,8 +37,14 @@ class WorkshopService extends IWorkshopService {
   }
 
   @override
-  Future<void> removeCard(String workshopId, String cardId) {
-    // TODO: implement removeCard
-    throw UnimplementedError();
+  Future<void> removeCard(WorkshopModel workshopModel, String cardId) async {
+    workshopModel.cardList.removeWhere((element) => element.id == cardId);
+    await _operation.addOrUpdateItem(workshopModel.id, workshopModel);
+  }
+
+  @override
+  Future<void> addNewCard(WorkshopModel workshopModel, CardModel cardModel) async {
+    workshopModel.cardList = [...workshopModel.cardList, cardModel];
+    await _operation.addOrUpdateItem(workshopModel.id, workshopModel);
   }
 }

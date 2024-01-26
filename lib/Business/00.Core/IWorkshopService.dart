@@ -9,9 +9,11 @@ abstract class IWorkshopService {
   //************************************************************************************************
   //*Message Event
   Future<List<WorkshopModel>> getWorkshopData();
-  Future<void> addOrUpdateWorkshopData(String id, String? title, WorkshopModel? workshopModel);
+  Future<void> addNewWorkshopData(WorkshopModel workshopModel);
+  Future<void> renameWorkshop(String title, WorkshopModel workshopModel);
+
   Future<void> deleteWorkshopData(String id);
   Future<void> deleteAllWorkshop();
-  Future<void> addNewCard(String workshopId, CardModel cardModel);
-  Future<void> removeCard(String workshopId, String cardId);
+  Future<void> addNewCard(WorkshopModel workshopModel, CardModel cardModel);
+  Future<void> removeCard(WorkshopModel workshopModel, String cardId);
 }
