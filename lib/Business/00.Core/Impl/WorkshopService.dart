@@ -8,9 +8,17 @@ import 'package:uuid/uuid.dart';
 class WorkshopService extends IWorkshopService {
   final WorkshopOperation _operation = WorkshopOperation();
   var uuid = const Uuid();
+  //? ////////////////////////////////////////////////////////////////
+  //? Workshop Stream
   MyStream<WorkshopModel> workshopStream = MyStream<WorkshopModel>();
-  Stream<WorkshopModel> get streamResponse => workshopStream.getResponse;
-
+  @override
+  Stream<WorkshopModel> get streamWorkshopModel => workshopStream.getResponse;
+  //? ////////////////////////////////////////////////////////////////
+  //? Card Stream
+  MyStream<CardModel> cardStream = MyStream<CardModel>();
+  @override
+  Stream<CardModel> get streamCardModel => cardStream.getResponse;
+  //? ////////////////////////////////////////////////////////////////
   @override
   Future<void> addNewWorkshopData(WorkshopModel workshopModel) async {
     workshopModel.id = uuid.v1();
@@ -46,5 +54,6 @@ class WorkshopService extends IWorkshopService {
   Future<void> addNewCard(WorkshopModel workshopModel, CardModel cardModel) async {
     workshopModel.cardList = [...workshopModel.cardList, cardModel];
     await _operation.addOrUpdateItem(workshopModel.id, workshopModel);
+    cardStream.add(cardModel);
   }
 }

@@ -1,8 +1,8 @@
+import 'package:cache_word/Business/0.0.State/main_controller.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
-mixin AddWordCardBottomDialogMixin {}
 
 class AddImageOrVoiceDropMenu extends StatelessWidget {
   AddImageOrVoiceDropMenu({super.key});

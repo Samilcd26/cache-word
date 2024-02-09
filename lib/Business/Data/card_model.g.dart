@@ -20,19 +20,22 @@ class CardModelImplAdapter extends TypeAdapter<_$CardModelImpl> {
       id: fields[0] as String,
       frontSide: fields[1] as String,
       backSide: fields[2] as String,
+      isOpen: fields[3] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$CardModelImpl obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.frontSide)
       ..writeByte(2)
-      ..write(obj.backSide);
+      ..write(obj.backSide)
+      ..writeByte(3)
+      ..write(obj.isOpen);
   }
 
   @override
@@ -55,6 +58,7 @@ _$CardModelImpl _$$CardModelImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       frontSide: json['frontSide'] as String,
       backSide: json['backSide'] as String,
+      isOpen: json['isOpen'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$CardModelImplToJson(_$CardModelImpl instance) =>
@@ -62,4 +66,5 @@ Map<String, dynamic> _$$CardModelImplToJson(_$CardModelImpl instance) =>
       'id': instance.id,
       'frontSide': instance.frontSide,
       'backSide': instance.backSide,
+      'isOpen': instance.isOpen,
     };

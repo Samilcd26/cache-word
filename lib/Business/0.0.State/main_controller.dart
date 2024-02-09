@@ -9,8 +9,12 @@ import 'package:get/get.dart';
 class MainController extends GetxController {
   final IWorkshopService _service = WorkshopService();
 
-  Stream<WorkshopModel> get getStreamData => _service.streamResponse;
+  WorkshopModel? currentWorkshop;
+  Stream<WorkshopModel> get getStreamData => _service.streamWorkshopModel;
+  Stream<CardModel> get getCardData => _service.streamCardModel;
+
   final ValueNotifier<List<WorkshopModel>> allWorkshopNotifier = ValueNotifier([]);
+  final ValueNotifier<List<CardModel>> allCardNotifier = ValueNotifier([]);
   Future<void> initialize() async {
     allWorkshopNotifier.value = await _service.getWorkshopData();
   }
@@ -28,7 +32,7 @@ class MainController extends GetxController {
   }
 
   Future<void> deleteAllWorkshop() => _service.deleteAllWorkshop();
-  Future<void> addNewCard(WorkshopModel workshopModel, CardModel cardModel) => _service.addNewCard(workshopModel, cardModel);
+  Future<void> addNewCard(CardModel cardModel) => _service.addNewCard(currentWorkshop!, cardModel);
   Future<void> removeCard(
     WorkshopModel workshopModel,
     String cardId,

@@ -22,10 +22,20 @@ CardModel _$CardModelFromJson(Map<String, dynamic> json) {
 mixin _$CardModel {
   @HiveField(0)
   String get id => throw _privateConstructorUsedError;
+  @HiveField(0)
+  set id(String value) => throw _privateConstructorUsedError;
   @HiveField(1)
   String get frontSide => throw _privateConstructorUsedError;
+  @HiveField(1)
+  set frontSide(String value) => throw _privateConstructorUsedError;
   @HiveField(2)
   String get backSide => throw _privateConstructorUsedError;
+  @HiveField(2)
+  set backSide(String value) => throw _privateConstructorUsedError;
+  @HiveField(3)
+  bool get isOpen => throw _privateConstructorUsedError;
+  @HiveField(3)
+  set isOpen(bool value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +51,8 @@ abstract class $CardModelCopyWith<$Res> {
   $Res call(
       {@HiveField(0) String id,
       @HiveField(1) String frontSide,
-      @HiveField(2) String backSide});
+      @HiveField(2) String backSide,
+      @HiveField(3) bool isOpen});
 }
 
 /// @nodoc
@@ -60,6 +71,7 @@ class _$CardModelCopyWithImpl<$Res, $Val extends CardModel>
     Object? id = null,
     Object? frontSide = null,
     Object? backSide = null,
+    Object? isOpen = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -74,6 +86,10 @@ class _$CardModelCopyWithImpl<$Res, $Val extends CardModel>
           ? _value.backSide
           : backSide // ignore: cast_nullable_to_non_nullable
               as String,
+      isOpen: null == isOpen
+          ? _value.isOpen
+          : isOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -89,7 +105,8 @@ abstract class _$$CardModelImplCopyWith<$Res>
   $Res call(
       {@HiveField(0) String id,
       @HiveField(1) String frontSide,
-      @HiveField(2) String backSide});
+      @HiveField(2) String backSide,
+      @HiveField(3) bool isOpen});
 }
 
 /// @nodoc
@@ -106,6 +123,7 @@ class __$$CardModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? frontSide = null,
     Object? backSide = null,
+    Object? isOpen = null,
   }) {
     return _then(_$CardModelImpl(
       id: null == id
@@ -120,6 +138,10 @@ class __$$CardModelImplCopyWithImpl<$Res>
           ? _value.backSide
           : backSide // ignore: cast_nullable_to_non_nullable
               as String,
+      isOpen: null == isOpen
+          ? _value.isOpen
+          : isOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -131,7 +153,8 @@ class _$CardModelImpl extends _CardModel {
   _$CardModelImpl(
       {@HiveField(0) required this.id,
       @HiveField(1) required this.frontSide,
-      @HiveField(2) required this.backSide})
+      @HiveField(2) required this.backSide,
+      @HiveField(3) this.isOpen = false})
       : super._();
 
   factory _$CardModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -139,34 +162,22 @@ class _$CardModelImpl extends _CardModel {
 
   @override
   @HiveField(0)
-  final String id;
+  String id;
   @override
   @HiveField(1)
-  final String frontSide;
+  String frontSide;
   @override
   @HiveField(2)
-  final String backSide;
+  String backSide;
+  @override
+  @JsonKey()
+  @HiveField(3)
+  bool isOpen;
 
   @override
   String toString() {
-    return 'CardModel(id: $id, frontSide: $frontSide, backSide: $backSide)';
+    return 'CardModel(id: $id, frontSide: $frontSide, backSide: $backSide, isOpen: $isOpen)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CardModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.frontSide, frontSide) ||
-                other.frontSide == frontSide) &&
-            (identical(other.backSide, backSide) ||
-                other.backSide == backSide));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, frontSide, backSide);
 
   @JsonKey(ignore: true)
   @override
@@ -184,9 +195,10 @@ class _$CardModelImpl extends _CardModel {
 
 abstract class _CardModel extends CardModel {
   factory _CardModel(
-      {@HiveField(0) required final String id,
-      @HiveField(1) required final String frontSide,
-      @HiveField(2) required final String backSide}) = _$CardModelImpl;
+      {@HiveField(0) required String id,
+      @HiveField(1) required String frontSide,
+      @HiveField(2) required String backSide,
+      @HiveField(3) bool isOpen}) = _$CardModelImpl;
   _CardModel._() : super._();
 
   factory _CardModel.fromJson(Map<String, dynamic> json) =
@@ -195,12 +207,23 @@ abstract class _CardModel extends CardModel {
   @override
   @HiveField(0)
   String get id;
+  @HiveField(0)
+  set id(String value);
   @override
   @HiveField(1)
   String get frontSide;
+  @HiveField(1)
+  set frontSide(String value);
   @override
   @HiveField(2)
   String get backSide;
+  @HiveField(2)
+  set backSide(String value);
+  @override
+  @HiveField(3)
+  bool get isOpen;
+  @HiveField(3)
+  set isOpen(bool value);
   @override
   @JsonKey(ignore: true)
   _$$CardModelImplCopyWith<_$CardModelImpl> get copyWith =>

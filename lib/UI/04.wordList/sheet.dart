@@ -1,13 +1,16 @@
+import 'package:cache_word/Business/0.0.State/main_controller.dart';
+import 'package:cache_word/Business/Data/card_model.dart';
 import 'package:cache_word/UI/00.Theme/TextFieldStyle.dart';
-import 'package:cache_word/UI/04.wordList/sheet.mixin.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cache_word/UI/04.wordList/dropmenu.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class AddWordCardBottomDialog extends StatelessWidget with AddWordCardBottomDialogMixin {
+class AddWordCardBottomDialog extends StatelessWidget {
   AddWordCardBottomDialog({super.key});
-  final TextEditingController cardFrond = TextEditingController();
-  final TextEditingController cardBack = TextEditingController();
+  final MainController rootState = Get.put(MainController());
+  final TextEditingController frontSide = TextEditingController();
+  final TextEditingController backSide = TextEditingController();
+
   static Future<void> show(BuildContext context) {
     return showDialog(
       context: context,
@@ -25,13 +28,13 @@ class AddWordCardBottomDialog extends StatelessWidget with AddWordCardBottomDial
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
-            controller: cardFrond,
+            controller: frontSide,
             decoration: TextFieldStyle.myInputDecoration(null, "Front"),
             maxLines: 3,
           ),
           const SizedBox(height: 10),
           TextField(
-            controller: cardBack,
+            controller: backSide,
             decoration: TextFieldStyle.myInputDecoration(AddImageOrVoiceDropMenu(), "Back"),
             maxLines: 3,
           ),
@@ -39,20 +42,14 @@ class AddWordCardBottomDialog extends StatelessWidget with AddWordCardBottomDial
       ),
       actions: <Widget>[
         TextButton(
-          onPressed: () {
-            // Kullanıcı "Evet" dediğinde true değerini döndürür.
-
-            Navigator.of(context).pop(true);
-          },
-          child: Text('Evet'),
+          onPressed: () => frontSide.text.isNotEmpty && backSide.text.isNotEmpty
+              ? rootState.addNewCard(CardModel(id: '', frontSide: frontSide.text, backSide: backSide.text))
+              : "",
+          child: Text('Add'),
         ),
         TextButton(
-          onPressed: () {
-            // Kullanıcı "Hayır" dediğinde false değerini döndürür.
-
-            Navigator.of(context).pop(false);
-          },
-          child: Text('Hayır'),
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text('Cancel'),
         ),
       ],
     );

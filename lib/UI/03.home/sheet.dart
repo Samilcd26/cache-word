@@ -27,7 +27,7 @@ class HomePageBottomSheet extends StatelessWidget with HomePageBottomSheetMixin 
           const DividerPull(),
           _CustomTextIconButton(Icons.card_giftcard_outlined, "Open the deck", () => openWorkshop(workshop)),
           const SizedBox(height: 20),
-          _CustomTextIconButton(Icons.card_giftcard_outlined, "Testing", () => openTestWorkshop(workshop)),
+          _CustomTextIconButton(Icons.card_giftcard_outlined, "Testing", () => openTestWorkshop(context, workshop)),
           const SizedBox(height: 20),
           _CustomTextIconButton(Icons.card_giftcard_outlined, "Rename", () => renameWorkshopGroup(context, workshop)),
           const SizedBox(height: 20),

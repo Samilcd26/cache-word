@@ -1,6 +1,6 @@
 import 'package:cache_word/UI/02.root/view.model.dart';
 import 'package:cache_word/UI/03.home/view.dart';
-import 'package:cache_word/UI/06.prepared/view.dart';
+import 'package:cache_word/UI/07.prepared/view.dart';
 import 'package:flutter/material.dart';
 
 class RootPage extends StatelessWidget with RootViewModel {

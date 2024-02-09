@@ -4,8 +4,8 @@ import 'package:cache_word/Business/Data/card_model.dart';
 import 'package:cache_word/Business/Data/workshop_model.dart';
 
 abstract class IWorkshopService {
-  Stream<WorkshopModel> get streamResponse;
-
+  Stream<WorkshopModel> get streamWorkshopModel;
+  Stream<CardModel> get streamCardModel;
   //************************************************************************************************
   //*Message Event
   Future<List<WorkshopModel>> getWorkshopData();

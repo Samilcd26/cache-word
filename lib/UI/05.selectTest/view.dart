@@ -32,6 +32,11 @@ class SelectTestScreen extends StatelessWidget {
 }
 
 List<SelectTestCardData> test = [
-  SelectTestCardData(icon: TESTMENUICONS.memorize, rating: 5, title: "Kelime Seçme"),
-  SelectTestCardData(icon: TESTMENUICONS.find, rating: 3, title: "Kelime asdasdsd"),
+  SelectTestCardData(icon: TESTMENUICONS.memorize, rating: 5, title: "Word List"),
+  SelectTestCardData(icon: TESTMENUICONS.find, rating: 3, title: "Word Select "),
+  SelectTestCardData(icon: TESTMENUICONS.find, rating: 3, title: "Word Find"),
+  SelectTestCardData(icon: TESTMENUICONS.find, rating: 3, title: "Listen & Select"),
+  SelectTestCardData(icon: TESTMENUICONS.find, rating: 3, title: "Listen & Find"),
+  SelectTestCardData(icon: TESTMENUICONS.find, rating: 3, title: "Listen & Write"),
+  SelectTestCardData(icon: TESTMENUICONS.find, rating: 3, title: "Read & Write"),
 ];
