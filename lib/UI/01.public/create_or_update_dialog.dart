@@ -53,7 +53,9 @@ class CreateOrUpdateDialog extends StatelessWidget {
           ),
           child: Text(isUpdate ? 'Update' : 'Add'),
           onPressed: () {
-            isUpdate ? "" : rootState.addNewWorkshopData(WorkshopModel(id: '', cardList: [], title: titleTextController.text));
+            isUpdate
+                ? ""
+                : rootState.addNewWorkshopData(WorkshopModel(id: '', cardList: [], title: titleTextController.text, category: ""));
             Navigator.of(context).pop(titleTextController.text);
             //newTitle.text==''?Navigator.of(context).pop();
           },

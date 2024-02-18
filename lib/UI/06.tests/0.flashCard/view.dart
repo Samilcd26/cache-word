@@ -15,7 +15,12 @@ class FlashCard extends StatelessWidget with FlashCardMixin {
     progressStatus.value = rootState.currentWorkshop!.cardList.length;
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(100.0), child: TestAppBar(title: 'Flash Card', progressStatus: progressStatus)),
+          preferredSize: const Size.fromHeight(100.0),
+          child: TestAppBar(
+            title: 'Flash Card',
+            progressStatus: progressStatus,
+            timeNotifier: timeNotifier,
+          )),
       body: Center(
         child: CarouselSlider(
           options: CarouselOptions(

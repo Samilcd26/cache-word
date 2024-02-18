@@ -1,5 +1,7 @@
 import 'package:cache_word/UI/06.tests/0.flashCard/view.dart';
 import 'package:cache_word/UI/06.tests/1.wordSelect/view.dart';
+import 'package:cache_word/UI/06.tests/3.matchCard/view.dart';
+import 'package:cache_word/UI/06.tests/4.writeWord/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -12,7 +14,7 @@ class SelectTestCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(WordSelect()),
+      onTap: () => Get.to(MatchCard()),
       child: Container(
           width: Get.width,
           margin: const EdgeInsets.symmetric(horizontal: 5.0),

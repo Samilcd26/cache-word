@@ -16,20 +16,6 @@ mixin HomePageBottomSheetMixin<T extends StatelessWidget> {
     Get.back();
   }
 
-  Future<void> openWorkshop(WorkshopModel workshop) async {
-    rootState.currentWorkshop = workshop;
-    Get.to(WordListPage());
-  }
-
-  void openTestWorkshop(BuildContext context, WorkshopModel workshop) {
-    rootState.currentWorkshop = workshop;
-    if (rootState.currentWorkshop!.cardList != null && rootState.currentWorkshop!.cardList.isNotEmpty) {
-      Get.to(SelectTestScreen(workshopModel: workshop));
-    } else {
-      Toasty.showError(context, "Error", "Eğer Test etmek istiyorsanınz önce kelime eklemelisiniz");
-    }
-  }
-
   void deleteWorkshop(BuildContext context, String id) => SimpleYesNoDialog.show(context).then((value) {
         if (value) {
           Get.back();

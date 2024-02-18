@@ -22,12 +22,10 @@ class HomePageBottomSheet extends StatelessWidget with HomePageBottomSheetMixin 
   Widget build(BuildContext context) {
     return SizedBox(
       width: Get.width,
+      height: Get.height * 0.3,
       child: Column(
         children: [
           const DividerPull(),
-          _CustomTextIconButton(Icons.card_giftcard_outlined, "Open the deck", () => openWorkshop(workshop)),
-          const SizedBox(height: 20),
-          _CustomTextIconButton(Icons.card_giftcard_outlined, "Testing", () => openTestWorkshop(context, workshop)),
           const SizedBox(height: 20),
           _CustomTextIconButton(Icons.card_giftcard_outlined, "Rename", () => renameWorkshopGroup(context, workshop)),
           const SizedBox(height: 20),

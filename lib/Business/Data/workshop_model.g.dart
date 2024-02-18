@@ -19,19 +19,22 @@ class WorkshopModelImplAdapter extends TypeAdapter<_$WorkshopModelImpl> {
     return _$WorkshopModelImpl(
       id: fields[0] as String,
       title: fields[1] as String,
-      cardList: (fields[2] as List).cast<CardModel>(),
+      category: fields[2] as String,
+      cardList: (fields[3] as List).cast<CardModel>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, _$WorkshopModelImpl obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.title)
       ..writeByte(2)
+      ..write(obj.category)
+      ..writeByte(3)
       ..write(obj.cardList);
   }
 
@@ -54,6 +57,7 @@ _$WorkshopModelImpl _$$WorkshopModelImplFromJson(Map<String, dynamic> json) =>
     _$WorkshopModelImpl(
       id: json['id'] as String,
       title: json['title'] as String,
+      category: json['category'] as String,
       cardList: (json['cardList'] as List<dynamic>)
           .map((e) => CardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -63,5 +67,6 @@ Map<String, dynamic> _$$WorkshopModelImplToJson(_$WorkshopModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'category': instance.category,
       'cardList': instance.cardList,
     };

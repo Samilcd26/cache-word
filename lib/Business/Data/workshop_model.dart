@@ -18,7 +18,8 @@ abstract class WorkshopModel extends HiveObject with HiveModelMixin, _$WorkshopM
   factory WorkshopModel({
     @HiveField(0) required String id,
     @HiveField(1) required String title,
-    @HiveField(2) required List<CardModel> cardList,
+    @HiveField(2) required String category,
+    @HiveField(3) required List<CardModel> cardList,
   }) = _WorkshopModel;
 
   factory WorkshopModel.fromJson(Map<String, Object?> json) => _$WorkshopModelFromJson(json);

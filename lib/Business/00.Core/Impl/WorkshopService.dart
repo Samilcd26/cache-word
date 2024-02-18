@@ -41,6 +41,7 @@ class WorkshopService extends IWorkshopService {
   @override
   Future<List<WorkshopModel>> getWorkshopData() async {
     await _operation.start();
+
     return _operation.getAllValues();
   }
 

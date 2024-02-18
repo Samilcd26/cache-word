@@ -84,13 +84,13 @@ class _HomePageState extends State<HomePage> with HomeMixin {
   }
 }
 
-class WorkshopCard extends StatelessWidget {
+class WorkshopCard extends StatelessWidget with HomeMixin {
   WorkshopCard({super.key, required this.workshop});
   final WorkshopModel workshop;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => HomePageBottomSheet.showSheet(context, workshop),
+      onLongPress: () => HomePageBottomSheet.showSheet(context, workshop),
       child: Container(
         margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
@@ -99,7 +99,43 @@ class WorkshopCard extends StatelessWidget {
             color: Colors.black.withOpacity(0.2)),
         height: Get.height * 0.2,
         width: Get.width,
-        child: Center(child: Text(workshop.title)),
+        child: Column(
+          children: [
+            //?Title&Category&Length
+            Expanded(
+                child: Column(
+              children: [
+                Expanded(
+                    child: Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(workshop.cardList.length.toString(), style: const TextStyle(color: Colors.white)),
+                        ))),
+                Expanded(
+                    child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          workshop.title,
+                          style: TextStyle(fontSize: 25),
+                        )))
+              ],
+            )),
+
+            //?Review And Practice buttons
+            Expanded(
+                child: Align(
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(onPressed: () => openWorkshop(workshop), child: Text("Review")),
+                        SizedBox(width: 10),
+                        ElevatedButton(onPressed: () => openTestWorkshop(context, workshop), child: Text("Practice")),
+                      ],
+                    ))),
+          ],
+        ),
       ),
     );
   }

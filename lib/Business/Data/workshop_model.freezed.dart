@@ -29,8 +29,12 @@ mixin _$WorkshopModel {
   @HiveField(1)
   set title(String value) => throw _privateConstructorUsedError;
   @HiveField(2)
-  List<CardModel> get cardList => throw _privateConstructorUsedError;
+  String get category => throw _privateConstructorUsedError;
   @HiveField(2)
+  set category(String value) => throw _privateConstructorUsedError;
+  @HiveField(3)
+  List<CardModel> get cardList => throw _privateConstructorUsedError;
+  @HiveField(3)
   set cardList(List<CardModel> value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,7 +52,8 @@ abstract class $WorkshopModelCopyWith<$Res> {
   $Res call(
       {@HiveField(0) String id,
       @HiveField(1) String title,
-      @HiveField(2) List<CardModel> cardList});
+      @HiveField(2) String category,
+      @HiveField(3) List<CardModel> cardList});
 }
 
 /// @nodoc
@@ -66,6 +71,7 @@ class _$WorkshopModelCopyWithImpl<$Res, $Val extends WorkshopModel>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? category = null,
     Object? cardList = null,
   }) {
     return _then(_value.copyWith(
@@ -76,6 +82,10 @@ class _$WorkshopModelCopyWithImpl<$Res, $Val extends WorkshopModel>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
               as String,
       cardList: null == cardList
           ? _value.cardList
@@ -96,7 +106,8 @@ abstract class _$$WorkshopModelImplCopyWith<$Res>
   $Res call(
       {@HiveField(0) String id,
       @HiveField(1) String title,
-      @HiveField(2) List<CardModel> cardList});
+      @HiveField(2) String category,
+      @HiveField(3) List<CardModel> cardList});
 }
 
 /// @nodoc
@@ -112,6 +123,7 @@ class __$$WorkshopModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? category = null,
     Object? cardList = null,
   }) {
     return _then(_$WorkshopModelImpl(
@@ -122,6 +134,10 @@ class __$$WorkshopModelImplCopyWithImpl<$Res>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
               as String,
       cardList: null == cardList
           ? _value.cardList
@@ -138,7 +154,8 @@ class _$WorkshopModelImpl extends _WorkshopModel {
   _$WorkshopModelImpl(
       {@HiveField(0) required this.id,
       @HiveField(1) required this.title,
-      @HiveField(2) required this.cardList})
+      @HiveField(2) required this.category,
+      @HiveField(3) required this.cardList})
       : super._();
 
   factory _$WorkshopModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -152,11 +169,14 @@ class _$WorkshopModelImpl extends _WorkshopModel {
   String title;
   @override
   @HiveField(2)
+  String category;
+  @override
+  @HiveField(3)
   List<CardModel> cardList;
 
   @override
   String toString() {
-    return 'WorkshopModel(id: $id, title: $title, cardList: $cardList)';
+    return 'WorkshopModel(id: $id, title: $title, category: $category, cardList: $cardList)';
   }
 
   @JsonKey(ignore: true)
@@ -177,7 +197,8 @@ abstract class _WorkshopModel extends WorkshopModel {
   factory _WorkshopModel(
       {@HiveField(0) required String id,
       @HiveField(1) required String title,
-      @HiveField(2) required List<CardModel> cardList}) = _$WorkshopModelImpl;
+      @HiveField(2) required String category,
+      @HiveField(3) required List<CardModel> cardList}) = _$WorkshopModelImpl;
   _WorkshopModel._() : super._();
 
   factory _WorkshopModel.fromJson(Map<String, dynamic> json) =
@@ -195,8 +216,13 @@ abstract class _WorkshopModel extends WorkshopModel {
   set title(String value);
   @override
   @HiveField(2)
-  List<CardModel> get cardList;
+  String get category;
   @HiveField(2)
+  set category(String value);
+  @override
+  @HiveField(3)
+  List<CardModel> get cardList;
+  @HiveField(3)
   set cardList(List<CardModel> value);
   @override
   @JsonKey(ignore: true)

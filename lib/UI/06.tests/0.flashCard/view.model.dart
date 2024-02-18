@@ -6,4 +6,5 @@ import 'package:get/get.dart';
 mixin FlashCardMixin<T extends StatefulWidget> {
   final MainController rootState = Get.put(MainController());
   ValueNotifier<int> progressStatus = ValueNotifier<int>(0);
+  ValueNotifier<int> timeNotifier = ValueNotifier(10);
 }
